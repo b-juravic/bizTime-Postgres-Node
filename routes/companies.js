@@ -33,15 +33,22 @@ router.get("/:code", async function(req, res, next) {
     const code = req.params.code;
 
     const results = await db.query(
-      `SELECT code, name, description
+      `SELECT code, name, description, id
        FROM companies
+       LEFT JOIN invoices
+       ON code = comp_code
        WHERE code=$1`, [code]);
 
     if(results.rows.length === 0) {
       throw new ExpressError("company not found",
                              NOT_FOUND);
     }
-    return res.json({company: results.rows[0]});
+
+    let {name, description} = results.rows[0];
+    let ids = results.rows.map(r => r.id);
+
+    return res.json({company: {code, name, description,
+                     invoices: ids}});
   }
   catch(err) {
     return next(err);
