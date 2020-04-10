@@ -2,9 +2,10 @@
   "name": "express-biztime",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node $(which jest) --runInBand",
+    "debug": "node --inspect-brk $(which jest) --runInBand",
     "start": "nodemon server.js"
   },
   "keywords": [],
@@ -13,5 +14,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^4.0.2"
   }
 }

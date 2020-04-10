@@ -8,7 +8,7 @@ const BAD_REQUEST = 400;
 
 /**
  * GET /invoices
- * Return info on invoices: like {invoices: [{id, comp_code}, ...]
+ * Return info on invoices: like {invoices: [{id, comp_code}, ...]}
  */
 
 router.get("/", async function (req, res, next) {
